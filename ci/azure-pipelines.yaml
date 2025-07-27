@@ -1,0 +1,10 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+- script: terraform -chdir=infra init
+- script: terraform -chdir=infra apply -auto-approve -var-file=infra/env/dev.tfvars
