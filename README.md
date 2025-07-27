@@ -53,15 +53,19 @@ minikube-argocd-terraform/
 
 ## Como usar
 
-1. Configure o kubeconfig para seu cluster Minikube.
+1. Certifique-se de que o kubeconfig está configurado corretamente para o seu cluster Minikube. Por padrão, o arquivo de configuração fica em `~/.kube/config`.
+   - Se você acabou de instalar o Minikube, o kubeconfig já estará apontando para o cluster local.
+   - Caso utilize outro local ou precise customizar, ajuste o caminho em `infra/env/dev.tfvars` (ou o tfvars do ambiente desejado) na variável `kubeconfig_path`.
 2. Inicie o Minikube:
    ```sh
    minikube start
    ```
-3. Execute o setup:
+3. Execute o setup **sempre a partir da raiz do projeto** (nunca de dentro da pasta infra):
    ```sh
    ./scripts/setup.sh
    ```
+   > O script utiliza o caminho `env/dev.tfvars` relativo à pasta `infra`. Se quiser usar outro ambiente, altere o nome do arquivo no script ou crie um parâmetro para seleção.
+   > O script verifica se está na raiz do projeto (onde existe `infra/main.tf`). Se não estiver, exibe uma mensagem de erro e encerra.
 4. Use os scripts utilitários para acessar o ArgoCD e Airflow.
 
 ## Dicas e informações úteis

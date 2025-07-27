@@ -9,6 +9,7 @@ resource "helm_release" "argocd" {
     name  = "server.service.type"
     value = "NodePort"
   }
+
   set {
     name  = "server.service.nodePort.https"
     value = var.nodeport_https

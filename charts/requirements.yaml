@@ -2,6 +2,3 @@ dependencies:
   - name: argocd
     version: "5.51.6"
     repository: "https://argoproj.github.io/argo-helm"
-  - name: airflow
-    version: "1.8.0"
-    repository: "https://airflow.apache.org"

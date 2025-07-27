@@ -1,0 +1,30 @@
+webserver:
+  expose_config: 'True'
+logging:
+  remote_logging: 'True'
+  remote_base_log_folder: wasb-airflow/logs
+  remote_wasb_log_container: airflow
+  remote_log_conn_id: wasb_default
+images:
+  airflow:
+    repository: apache/airflow
+    tag: "2.8.1"
+executor: KubernetesExecutor
+fernetKeySecretName: airflow-fernet-secret
+webserverSecretKeySecretName: airflow-webserver-secret
+createUserJob:
+  useHelmHooks: false
+  applyCustomEnv: false
+migrateDatabaseJob:
+  enabled: true
+  useHelmHooks: false
+  applyCustomEnv: false
+  jobAnnotations:
+    "argocd.argoproj.io/hook": Sync
+useStandardNaming: true
+dags:
+  gitSync:
+    enabled: true
+    repo: https://github.com/ORG/custom-airflow.git
+    branch: master
+    subPath: dags

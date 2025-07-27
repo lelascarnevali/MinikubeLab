@@ -1,0 +1,7 @@
+apiVersion: v2
+name: airflow
+version: 1.0.0
+description: Helm chart for deploying Apache Airflow on Kubernetes
+maintainers:
+  - name: Seu Nome
+    email: seu-email@exemplo.com
